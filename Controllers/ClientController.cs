@@ -19,5 +19,11 @@ namespace LoginPage.Controllers
             var clients = new List<string> { "Client 1", "Client 2", "Client 3" };
             return View(clients);
         }
+
+        [HttpGet]
+        public IActionResult Edit()
+        {
+            return View();
+        }
     }
 }
