@@ -4,43 +4,40 @@
     ViewData["Title"] = "View Clients";
 }
 
-<link href="//cdn.datatables.net/2.2.1/css/dataTables.dataTables.min.css" rel="stylesheet" />
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="//cdn.datatables.net/2.2.1/js/dataTables.min.js"></script>
-
-<h1>View Clients</h1>
-<table id="clientsTable">
+<br />
+<h2>List of Clients</h2>
+<a class="btn btn-primary btn-sm" href="@Url.Action("Add", "Client")">Add Client</a>
+<table class="table">
     <thead>
         <tr>
-            <th>Client ID</th>
+            <th>ID</th>
+            <th>Title</th>
             <th>Name</th>
             <th>Surname</th>
-            <th>Title</th>
-            <th>Client Type</th>
             <th>Email</th>
             <th>Contact Number</th>
             <th>Address</th>
+            <th>Client Type</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var client in Model)
+        @foreach (var item in Model)
         {
             <tr>
-                <td>@client.ClientId</td>
-                <td>@client.Name</td>
-                <td>@client.Surname</td>
-                <td>@client.Title</td>
-                <td>@client.ClientType</td>
-                <td>@client.Email</td>
-                <td>@client.ContactNumber</td>
-                <td>@client.Address</td>
+                <td>@item.ClientId</td>
+                <td>@item.Title</td>
+                <td>@item.Name</td>
+                <td>@item.Surname</td>
+                <td>@item.Email</td>
+                <td>@item.ContactNumber</td>
+                <td>@item.Address</td>
+                <td>@item.ClientType</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="@Url.Action("Add", "Client")">Notes</a>
+                    <a class="btn btn-primary btn-sm" href="@Url.Action("Add", "Client")">Edit</a>
+                    <a class="btn btn-primary btn-sm" href="@Url.Action("Add", "Client")">Delete</a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
-
-<script>
-    let table = new DataTable("#clientTable", {
-
-    })
-</script>
