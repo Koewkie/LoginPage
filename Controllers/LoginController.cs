@@ -15,7 +15,7 @@ namespace LoginPage.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Home");    //fisrt index->IActionResult Index in homecontroller
+                return RedirectToAction("ViewClient", "Client");    //fisrt index->IActionResult Index in homecontroller
                                                              //second home->Home part of the HomeController.cs
             }
             else
