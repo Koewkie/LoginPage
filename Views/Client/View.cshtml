@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "View Clients";
+}
+
+<h1>View Clients</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Client Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            int index = 1;
+            foreach (var client in (List<string>)Model)
+            {
+                <tr>
+                    <td>@index</td>
+                    <td>@client</td>
+                </tr>
+                index++;
+            }
+        }
+    </tbody>
+</table>
