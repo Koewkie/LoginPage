@@ -5,12 +5,8 @@
 <h2>Welcome to the Home Page!</h2>
 <p>You have successfully logged in.</p>
 
-<div>
-    <form asp-controller="Home" asp-action="RedirectToAddClient" method="post" style="display:inline;">
-        <button type="submit" class="btn btn-primary">Add Client</button>
-    </form>
 
-    <form asp-controller="Home" asp-action="RedirectToViewClients" method="post" style="display:inline;">
-        <button type="submit" class="btn btn-secondary">View Clients</button>
-    </form>
+<div>
+    <button class="btn-black" onclick="location.href='@Url.Action("AddClient", "Home")'">Add Client</button>
+    <button class="btn-black" onclick="location.href='@Url.Action("ViewClients", "Home")'">View Clients</button>
 </div>

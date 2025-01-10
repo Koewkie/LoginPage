@@ -6,17 +6,18 @@ namespace LoginPage.Controllers
     {
         public IActionResult Index()
         {
+            Console.WriteLine("add");
             return View();
         }
 
-        public IActionResult RedirectToAddClient()
+        public IActionResult AddClient()
         {
             return RedirectToAction("Add", "Client"); // Redirect to Add action in ClientController
         }
 
-        public IActionResult RedirectToViewClients()
+        public IActionResult ViewClients()
         {
-            return RedirectToAction("View", "Client"); // Redirect to View action in ClientController
+            return RedirectToAction("ViewClient", "Client"); // Redirect to View action in ClientController
         }
     }
 
