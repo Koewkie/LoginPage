@@ -6,7 +6,7 @@
 
 <br />
 <h2>List of Clients</h2>
-<a class="btn btn-primary btn-sm" href="@Url.Action("Add", "Client")">Add Client</a>
+<a class="btn btn-primary btn-sm" href="@Url.Action("Add", "Add")">Add Client</a>
 <table class="table">
     <thead>
         <tr>
@@ -36,8 +36,8 @@
                     <td>@item.ClientType</td>
                     <td>
                         <a class="btn btn-primary btn-sm" href="@Url.Action("Notes", "Notes")">Notes</a>
-                        <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", "Client")?id=@item.ClientId">Edit</a>
-                        <a class="btn btn-primary btn-sm" href="@Url.Action("Add", "Client")?id=@item.ClientId">Delete</a>
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", "Edit")?id=@item.ClientId">Edit</a>
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("Add", "Add")?id=@item.ClientId">Delete</a>
                     </td>
                 </tr>
             }

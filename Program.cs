@@ -28,7 +28,7 @@ namespace LoginPage
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Login}/{action=Index}/{id?}");
+                pattern: "{controller=Client}/{action=ViewClient}/{id?}");
 
             app.Run();
         }
