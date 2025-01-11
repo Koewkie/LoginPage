@@ -1,0 +1,41 @@
+﻿@model List<LoginPage.Models.NotesModel>
+
+<h1>Add Note/Comment</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Client ID</th>
+            <th>Note ID</th>
+            <th>Employee Comment</th>
+            <th>Client Comment</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var note in Model)
+        {
+            <tr>
+                <td>@note.ClientID</td>
+                <td>@note.NoteID</td>
+                <td>@note.EmployeeComment ?? "No comment yet"</td>
+                <td>@note.ClientComment ?? "No comment yet"</td>
+                <td>@note.Date.ToString("g")</td>
+                <td>
+                    <!-- Edit Comment Button -->
+                    <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", "Client")">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Add Note/Suggestion</h3>
+<form asp-action="AddEmployeeComment" method="post">
+    <div class="form-group">
+        <label for="comment">Note</label>
+        <textarea id="comment" name="comment" class="form-control" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Comment</button>
+</form>
