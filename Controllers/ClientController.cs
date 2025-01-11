@@ -1,5 +1,6 @@
 ﻿using LoginPage.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Data.SqlClient;
 
 namespace LoginPage.Controllers
 {
@@ -16,24 +17,64 @@ namespace LoginPage.Controllers
         [HttpGet]
         public IActionResult ViewClient()
         {
-            // Sample data
-            var clients = new List<ClientViewModel>
+            //Get client data from db
+            try
             {
-                new ClientViewModel { ClientId = 1, Name = "John", Surname = "Doe", Title = "Mr.", ClientType = "New Client", Email = "john.doe@example.com", ContactNumber = "123-456-7890", Address = "123 Main Street, Cityville" },
-                new ClientViewModel { ClientId = 2, Name = "Jane", Surname = "Smith", Title = "Ms.", ClientType = "Important Client", Email = "jane.smith@example.com", ContactNumber = "234-567-8901", Address = "456 Elm Street, Townsville" },
-                new ClientViewModel { ClientId = 3, Name = "Michael", Surname = "Brown", Title = "Dr.", ClientType = "Super Client", Email = "michael.brown@example.com", ContactNumber = "345-678-9012", Address = "789 Oak Avenue, Villageton" },
-                new ClientViewModel { ClientId = 4, Name = "Emily", Surname = "Johnson", Title = "Mrs.", ClientType = "Client Removed", Email = "emily.johnson@example.com", ContactNumber = "456-789-0123", Address = "321 Pine Road, Hamletburg" }
-            };
+                Console.WriteLine("try");
 
-            // Pass the data to the view
-            return View(clients);
+                string conn = "Data Source=localhost;Initial Catalog=CRM_Test_EstianHuman;Integrated Security=True;";
+
+                using (SqlConnection sqlcon = new SqlConnection(conn))
+                {
+                    sqlcon.Open();
+                    string query = @"SELECT 
+                                        bci.client_id, bci.name, bci.surname, t.title_name AS title,  
+                                        ct.client_type_name as [Client Type], bci.email, bci.contact_number, bci.address 
+                                    FROM 
+                                        basic_client_information bci 
+                                    INNER JOIN 
+                                        client_type ct ON bci.client_type_id = ct.client_type_id 
+                                    INNER JOIN
+                                        title t ON bci.title_id = t.title_id";
+                    SqlCommand cmd = new SqlCommand(query,sqlcon);
+                    SqlDataReader sr = cmd.ExecuteReader();
+
+                    var clients = new List<ClientViewModel>();
+
+                    while (sr.Read())
+                    {
+                        var client = new ClientViewModel();
+
+                        client.ClientId = sr.GetInt32(0);
+                        client.Name = sr.GetString(1);
+                        client.Surname = sr.GetString(2);
+                        client.Title = sr.GetString(3);
+                        client.ClientType = sr.GetString(4);
+                        client.Email = sr.GetString(5);
+                        client.ContactNumber = sr.GetString(6);
+                        client.Address = sr.GetString(7);
+
+                        clients.Add(client);
+                    }
+
+                    sqlcon.Close();
+                    if (clients.Count == 0) //if client table is empty
+                    {
+                        // Pass nothing to the view
+                        return View();
+                    }
+
+                    // Pass the data to the view
+                    return View(clients);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Client view database exception: "+ex.Message);
+                // Pass nothing to the view
+                return View();
+            } 
         }
-        //public IActionResult ViewClient()
-        //{
-        //    // Placeholder: Replace with logic to fetch clients from a database
-        //    var clients = new List<string> { "Client 1", "Client 2", "Client 3" };
-        //    return View(clients);
-        //}
 
         [HttpGet]
         public IActionResult Edit()

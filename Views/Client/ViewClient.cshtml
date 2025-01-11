@@ -21,23 +21,26 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @if (Model != null)
         {
-            <tr>
-                <td>@item.ClientId</td>
-                <td>@item.Title</td>
-                <td>@item.Name</td>
-                <td>@item.Surname</td>
-                <td>@item.Email</td>
-                <td>@item.ContactNumber</td>
-                <td>@item.Address</td>
-                <td>@item.ClientType</td>
-                <td>
-                    <a class="btn btn-primary btn-sm" href="@Url.Action("Add", "Client")">Notes</a>
-                    <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", "Client")">Edit</a>
-                    <a class="btn btn-primary btn-sm" href="@Url.Action("Add", "Client")">Delete</a>
-                </td>
-            </tr>
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ClientId</td>
+                    <td>@item.Title</td>
+                    <td>@item.Name</td>
+                    <td>@item.Surname</td>
+                    <td>@item.Email</td>
+                    <td>@item.ContactNumber</td>
+                    <td>@item.Address</td>
+                    <td>@item.ClientType</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("Add", "Client")">Notes</a>
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", "Client")?id=">Edit</a>
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("Add", "Client")?id=">Delete</a>
+                    </td>
+                </tr>
+            }
         }
     </tbody>
 </table>
