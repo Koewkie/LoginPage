@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Error";
+}
+
+<h1>Error</h1>
+
+@if (ViewData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Error:</strong> @ViewData["ErrorMessage"]
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">
+        <strong>An unexpected error occurred.</strong>
+    </div>
+}

@@ -36,8 +36,8 @@
                     <td>@item.ClientType</td>
                     <td>
                         <a class="btn btn-primary btn-sm" href="@Url.Action("Add", "Client")">Notes</a>
-                        <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", "Client")?id=">Edit</a>
-                        <a class="btn btn-primary btn-sm" href="@Url.Action("Add", "Client")?id=">Delete</a>
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", "Client")?id=@item.ClientId">Edit</a>
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("Add", "Client")?id=@item.ClientId">Delete</a>
                     </td>
                 </tr>
             }
