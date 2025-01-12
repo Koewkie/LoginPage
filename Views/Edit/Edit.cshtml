@@ -1,45 +1,56 @@
-﻿@model ClientAddModel
+﻿@model ClientEditModel
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
 <h2>Edit Client</h2>
 
 <form asp-action="EditClient" enctype="multipart/form-data" method="post">
+    <input type="hidden" asp-for="ClientId" />
+
     <div class="form-group">
         <label for="ProfilePicture">Profile Picture</label>
-        <input type="file" class="form-control" id="ProfilePicture" name="ProfilePicture" required />
+        <input type="file" class="form-control" id="ProfilePicture" name="ProfilePicture"  />
     </div>
 
     <div class="form-group">
         <label for="Title">Title</label>
-        @* <select asp-for="TitleId" class="form-control" asp-items="Viewbag.Titles"></select> *@
+        <select asp-for="TitleId" class="form-control" asp-items="ViewBag.Titles"></select>
     </div>
 
     <div class="form-group">
         <label for="Name">First Name</label>
-        <input type="text" class="form-control" id="Name" name="Client.Name" required />
+        <input type="text" class="form-control" id="Name" name="Name" asp-for = "Name" />
     </div>
 
     <div class="form-group">
         <label for="Surname">Surname</label>
-        <input type="text" class="form-control" id="Surname" name="Client.Surname" required />
+        <input type="text" class="form-control" id="Surname" name="Surname" asp-for="Surname" />
+    </div>
+
+    <div class="form-group">
+        <label for="Username">Username</label>
+        <input type="text" class="form-control" id="Username" name="Username" asp-for="Username" />
     </div>
 
     <div class="form-group">
         <label for="Email">Email</label>
-        <input type="email" class="form-control" id="Email" name="Client.Email" required />
+        <input type="email" class="form-control" id="Email" name="Email" asp-for="Email" />
     </div>
 
     <div class="form-group">
-        <label for="ContactNumbers">Contact Numbers</label>
-        <input type="text" class="form-control" id="ContactNumbers" name="Client.ContactNumbers" required />
+        <label for="ContactNumber">Contact Numbers</label>
+        <input type="text" class="form-control" id="ContactNumber" name="ContactNumber" asp-for="ContactNumber" />
     </div>
 
     <div class="form-group">
         <label for="Address">Address</label>
-        <input type="text" class="form-control" id="Address" name="Client.Address" required />
+        <input type="text" class="form-control" id="Address" name="Address" asp-for="Address" />
     </div>
 
     <div class="form-group">
         <label for="ClientType">Client Type</label>
-        @* <select asp-for="ClientTypeId" class="form-control" asp-items="Viewbag.ClientTypes"></select> *@
+        <select asp-for="ClientTypeId" class="form-control" asp-items="ViewBag.ClientTypes"></select>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
