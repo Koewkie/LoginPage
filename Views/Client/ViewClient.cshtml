@@ -37,7 +37,10 @@
                     <td>
                         <a class="btn btn-primary btn-sm" href="@Url.Action("Notes", "Notes")">Notes</a>
                         <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", "Edit")?id=@item.ClientId">Edit</a>
-                        <a class="btn btn-primary btn-sm" href="@Url.Action("Add", "Add")?id=@item.ClientId">Delete</a>
+                        <form asp-action="DeleteClient" method="post" onsubmit="return confirm('Are you sure you want to delete this client?');">
+                            <input type="hidden" name="ID" value="@item.ClientId" />
+                            <button type="submit" class="btn btn-primary btn-sm">Delete</button>
+                        </form>
                     </td>
                 </tr>
             }
