@@ -14,8 +14,14 @@ namespace LoginPage.Controllers
             {
                 ClientID = 1,
                 NoteID = 1,
-                EmployeeComment = "Suggested a new design layout.",
-                ClientComment = "We like the suggestion!",
+                EmployeeComment = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+                "Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. " +
+                "Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. " +
+                "Fusce nec tellus sed augue semper porta. Mauris massa.\"",
+                ClientComment = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+                "Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. " +
+                "Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. " +
+                "Fusce nec tellus sed augue semper porta. Mauris massa.\"",
                 Date = DateTime.Now.AddDays(-2)
             },
             new NotesModel
