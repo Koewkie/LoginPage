@@ -95,12 +95,19 @@ namespace LoginPage.Controllers
                     cmdDel.Parameters.AddWithValue("@ClientId", ID);
                     cmdDel.ExecuteNonQuery();
 
+                    //Delete client notes
+                    string queryDeleteNotes = @"DELETE FROM notes WHERE client_id = @ClientId";
+                    SqlCommand cmdDelNotes = new SqlCommand(queryDeleteNotes, sqlcon);
+
+                    cmdDelNotes.Parameters.AddWithValue("@ClientId", ID);
+                    cmdDelNotes.ExecuteNonQuery();
+
                     //Delete client info
                     string queryDelete = @"DELETE FROM basic_client_information WHERE client_id = @ClientId";
-                    cmdDel = new SqlCommand(queryDelete,sqlcon);
+                    SqlCommand cmdDelClient = new SqlCommand(queryDelete,sqlcon);
 
-                    cmdDel.Parameters.AddWithValue("@ClientId", ID);
-                    cmdDel.ExecuteNonQuery();
+                    cmdDelClient.Parameters.AddWithValue("@ClientId", ID);
+                    cmdDelClient.ExecuteNonQuery();
                     sqlcon.Close();
                 }
                 return RedirectToAction("ViewClient","Client");

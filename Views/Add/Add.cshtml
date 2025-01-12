@@ -51,5 +51,8 @@
         <select asp-for="ClientTypeId" class="form-control" asp-items="ViewBag.ClientTypes" asp-for="ClientTypeId"></select>
     </div>
 
-    <button type="submit" class="btn btn-primary">Register Client</button>
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary">Register Client</button>
+        <a href="@Url.Action("ViewClient", "Client")" class="btn btn-secondary">Cancel</a>
+    </div>
 </form>
