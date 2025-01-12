@@ -13,7 +13,7 @@ namespace LoginPage.Controllers
         string conn = "Data Source=localhost;Initial Catalog=CRM_Test_EstianHuman;Integrated Security=True;";
         // Action to show the Add Client view
         [HttpGet]
-        public IActionResult Add()
+        public IActionResult Add(ClientAddModel model = null)
         {
             List<TitleModel> titles = new List<TitleModel>();
             List<ClientTypeModel> clientTypes = new List<ClientTypeModel>();
@@ -84,8 +84,15 @@ namespace LoginPage.Controllers
                 // Pass nothing to the view
                 return RedirectToAction("Error", "Client", new { e = ex.Message });
             }
-
-            return View(new ClientAddModel());
+            if (model == null) 
+            {
+                return View(new ClientAddModel());
+            }
+            else
+            {
+                return View(model);
+            }
+            
         }
 
         [HttpPost]
@@ -94,8 +101,8 @@ namespace LoginPage.Controllers
             if (!ModelState.IsValid)
             {
                 TempData["ErrorMessage"] = "Please ensure all fields are correctly filled in";
-               
-                return RedirectToAction("Add");
+
+                return RedirectToAction("Add", model);
             }
 
             try
@@ -123,8 +130,11 @@ namespace LoginPage.Controllers
                         if ((int)chkUserName.ExecuteScalar() > 0)
                         {
                             TempData["ErrorMessage"] = "The username already exists.";
+                            var newModel = new ClientAddModel();
+                            newModel.Name = model.Name;
                             
-                            return RedirectToAction("Add");
+                            
+                            return RedirectToAction("Add", model);
                         }
                     }
 

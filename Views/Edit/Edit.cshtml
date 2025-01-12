@@ -1,10 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Edit Client";
-}
-
+﻿@model ClientAddModel
 <h2>Edit Client</h2>
 
-<form asp-action="AddClient" enctype="multipart/form-data" method="post">
+<form asp-action="EditClient" enctype="multipart/form-data" method="post">
     <div class="form-group">
         <label for="ProfilePicture">Profile Picture</label>
         <input type="file" class="form-control" id="ProfilePicture" name="ProfilePicture" required />
@@ -12,7 +9,7 @@
 
     <div class="form-group">
         <label for="Title">Title</label>
-        @* <select asp-for="Client.TitleId" class="form-control" asp-items="Model.Titles"></select> *@
+        @* <select asp-for="TitleId" class="form-control" asp-items="Viewbag.Titles"></select> *@
     </div>
 
     <div class="form-group">
@@ -42,7 +39,7 @@
 
     <div class="form-group">
         <label for="ClientType">Client Type</label>
-        @* <select asp-for="Client.ClientTypeId" class="form-control" asp-items="Model.ClientTypes"></select> *@
+        @* <select asp-for="ClientTypeId" class="form-control" asp-items="Viewbag.ClientTypes"></select> *@
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>

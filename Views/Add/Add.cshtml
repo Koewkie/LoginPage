@@ -8,47 +8,47 @@
 <form asp-action="AddClient" enctype="multipart/form-data" method="post">
     <div class="form-group">
         <label for="ProfilePicture">Profile Picture</label>
-        <input type="file" class="form-control" id="ProfilePicture" name="ProfilePicture" />
+        <input type="file" class="form-control" id="ProfilePicture" name="ProfilePicture" value="@Model.ProfilePicture"/>
     </div>
 
     <div class="form-group">
         <label for="TitleId">Title</label>
-        <select asp-for="TitleId" class="form-control" asp-items="ViewBag.Titles"></select>
+        <select asp-for="TitleId" class="form-control" asp-items="ViewBag.Titles" value="@Model.TitleId"></select>
     </div>
 
     <div class="form-group">
         <label for="Name">First Name</label>
-        <input type="text" class="form-control" id="Name" name="Name" />
+        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" />
     </div>
 
     <div class="form-group">
         <label for="Surname">Surname</label>
-        <input type="text" class="form-control" id="Surname" name="Surname" />
+        <input type="text" class="form-control" id="Surname" name="Surname" value="@Model.Surname" />
     </div>
 
     <div class="form-group">
         <label for="Username">Username</label>
-        <input type="text" class="form-control" id="Username" name="Username"  />
+        <input type="text" class="form-control" id="Username" name="Username" value="@Model.Username" />
     </div>
 
     <div class="form-group">
         <label for="Email">Email</label>
-        <input type="email" class="form-control" id="Email" name="Email"  />
+        <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" />
     </div>
 
     <div class="form-group">
         <label for="ContactNumber">Contact Numbers</label>
-        <input type="text" class="form-control" id="ContactNumber" name="ContactNumber"  />
+        <input type="text" class="form-control" id="ContactNumber" name="ContactNumber" value="@Model.ContactNumber" />
     </div>
 
     <div class="form-group">
         <label for="Address">Address</label>
-        <input type="text" class="form-control" id="Address" name="Address"  />
+        <input type="text" class="form-control" id="Address" name="Address" value="@Model.Address" />
     </div>
 
     <div class="form-group">
         <label for="ClientTypeId">Client Type</label>
-        <select asp-for="ClientTypeId" class="form-control" asp-items="ViewBag.ClientTypes"></select>
+        <select asp-for="ClientTypeId" class="form-control" asp-items="ViewBag.ClientTypes" value="@Model.ClientTypeId"></select>
     </div>
 
     <button type="submit" class="btn btn-primary">Register Client</button>
