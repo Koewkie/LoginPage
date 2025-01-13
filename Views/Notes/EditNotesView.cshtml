@@ -1,0 +1,38 @@
+﻿@model NoteEditModel
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+<h1>Add Note/Comment</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Client ID</th>
+            <th>Note ID</th>
+            <th>Employee Comment</th>
+            <th>Client Comment</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.ClientId</td>
+            <td>@Model.NoteId</td>
+            <td>@Model.EmployeeNote</td>
+            <td>@Model.ClientComment</td>
+            <td>@Model.Date.ToString("g")</td>
+            <td>
+                <a class="btn btn-primary btn-sm" href="@Url.Action("Notes", "Notes")?id=@Model.ClientId">Notes</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<form asp-action="EditNote" method="post">
+    <label>Note</label>
+    <input type="hidden" name="ClientId" asp-for="ClientId" value="@Model.ClientId" />
+    <input type="hidden" name="NoteId" asp-for="NoteId" value="@Model.NoteId" />
+    <textarea id="AddNote" name="EmployeeNote" class="form-control" asp-for="EmployeeNote"></textarea>
+    <button type="submit" class="btn btn-primary btn-sm">Edit Note</button>
+</form>

@@ -63,9 +63,7 @@ namespace LoginPage.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Client view database exception: "+ex.Message);
-                // Pass nothing to the view
-                return View();
+                return RedirectToAction("Error", "Client", new { e = ex.Message });
             } 
         }
 
@@ -80,6 +78,44 @@ namespace LoginPage.Controllers
         {
             ViewData["ErrorMessage"] = e;
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult DeleteClient(int ID)
+        {
+            try
+            {
+                using (SqlConnection sqlcon = new SqlConnection(conn))
+                {
+                    sqlcon.Open();
+                    //Delete client login details
+                    string queryDeleteLogin = @"DELETE FROM login_details WHERE client_id = @ClientId";
+                    SqlCommand cmdDel = new SqlCommand(queryDeleteLogin, sqlcon);
+
+                    cmdDel.Parameters.AddWithValue("@ClientId", ID);
+                    cmdDel.ExecuteNonQuery();
+
+                    //Delete client notes
+                    string queryDeleteNotes = @"DELETE FROM notes WHERE client_id = @ClientId";
+                    SqlCommand cmdDelNotes = new SqlCommand(queryDeleteNotes, sqlcon);
+
+                    cmdDelNotes.Parameters.AddWithValue("@ClientId", ID);
+                    cmdDelNotes.ExecuteNonQuery();
+
+                    //Delete client info
+                    string queryDelete = @"DELETE FROM basic_client_information WHERE client_id = @ClientId";
+                    SqlCommand cmdDelClient = new SqlCommand(queryDelete,sqlcon);
+
+                    cmdDelClient.Parameters.AddWithValue("@ClientId", ID);
+                    cmdDelClient.ExecuteNonQuery();
+                    sqlcon.Close();
+                }
+                return RedirectToAction("ViewClient","Client");
+            }
+            catch(Exception ex) 
+            {
+                return RedirectToAction("Error", "Client", new { e = ex.Message });
+            }
         }
     }
 }
