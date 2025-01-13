@@ -1,3 +1,5 @@
+using LoginPage.Controllers;
+
 namespace LoginPage
 {
     public class Program
@@ -8,6 +10,8 @@ namespace LoginPage
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddHttpClient<ClientController>();
 
             var app = builder.Build();
 
